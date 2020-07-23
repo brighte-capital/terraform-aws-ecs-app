@@ -21,6 +21,6 @@ EOF
 
 resource "aws_iam_role_policy_attachment" "codedeploy_service" {
   count      = var.codedeploy_enable ? 1 : 0
-  role       = aws_iam_role.codedeploy_service.name
+  role       = aws_iam_role.codedeploy_service[0].name
   policy_arn = "arn:aws:iam::aws:policy/AWSCodeDeployRoleForECS"
 }

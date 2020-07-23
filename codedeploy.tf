@@ -1,15 +1,15 @@
 resource "aws_codedeploy_app" "ecs" {
-  count            = var.codedeploy_enable ? 1 : 0
+  count =  var.codedeploy_enable ? 1 : 0
   compute_platform = "ECS"
   name             = "${var.cluster_name}-${var.name}"
 }
 
 resource "aws_codedeploy_deployment_group" "ecs" {
-
-  app_name               = aws_codedeploy_app.ecs.name
+  count =  var.codedeploy_enable ? 1 : 0
+  app_name               = aws_codedeploy_app.ecs[0].name
   deployment_config_name = "CodeDeployDefault.ECSAllAtOnce"
   deployment_group_name  = "${var.cluster_name}-${var.name}"
-  service_role_arn       = aws_iam_role.codedeploy_service.arn
+  service_role_arn       = aws_iam_role.codedeploy_service[0].arn
 
   auto_rollback_configuration {
     enabled = true
