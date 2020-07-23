@@ -249,5 +249,10 @@ variable "log_subscription_filter_destination_arn" {
 
 variable "log_subscription_filter_filter_pattern" {
   default = ""
-  type = string
+  type    = string
+}
+
+variable "codedeploy_enable" {
+  default     = false
+  description = "Enable code deploy"
 }
