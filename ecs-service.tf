@@ -25,7 +25,7 @@ resource "aws_ecs_service" "default" {
   }
 
   deployment_controller {
-    type = "CODE_DEPLOY"
+    type = var.codedeploy_enable ? "CODE_DEPLOY" : null
   }
 
   lifecycle {
